@@ -1,0 +1,1583 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jmeterTestPlan version="1.2" properties="5.0" jmeter="5.1 r1853635">
+  <hashTree>
+    <TestPlan guiclass="TestPlanGui" testclass="TestPlan" testname="Test Plan" enabled="true">
+      <stringProp name="TestPlan.comments"></stringProp>
+      <boolProp name="TestPlan.functional_mode">false</boolProp>
+      <boolProp name="TestPlan.tearDown_on_shutdown">true</boolProp>
+      <boolProp name="TestPlan.serialize_threadgroups">true</boolProp>
+      <elementProp name="TestPlan.user_defined_variables" elementType="Arguments" guiclass="ArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
+        <collectionProp name="Arguments.arguments"/>
+      </elementProp>
+      <stringProp name="TestPlan.user_define_classpath"></stringProp>
+    </TestPlan>
+    <hashTree>
+      <Arguments guiclass="ArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
+        <collectionProp name="Arguments.arguments">
+          <elementProp name="environment" elementType="Argument">
+            <stringProp name="Argument.name">environment</stringProp>
+            <stringProp name="Argument.value">qa-kong.command-api.kw.com</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+        </collectionProp>
+      </Arguments>
+      <hashTree/>
+      <CSVDataSet guiclass="TestBeanGUI" testclass="CSVDataSet" testname="CSV Data Set Config" enabled="true">
+        <stringProp name="filename">emails.csv</stringProp>
+        <stringProp name="fileEncoding"></stringProp>
+        <stringProp name="variableNames">email1,email2,email3,email4,email5,email6,email7,email8,email9,email10</stringProp>
+        <boolProp name="ignoreFirstLine">false</boolProp>
+        <stringProp name="delimiter">,</stringProp>
+        <boolProp name="quotedData">false</boolProp>
+        <boolProp name="recycle">true</boolProp>
+        <boolProp name="stopThread">false</boolProp>
+        <stringProp name="shareMode">shareMode.all</stringProp>
+      </CSVDataSet>
+      <hashTree/>
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Login Thread" enabled="true">
+        <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
+        <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller" enabled="true">
+          <boolProp name="LoopController.continue_forever">false</boolProp>
+          <stringProp name="LoopController.loops">1</stringProp>
+        </elementProp>
+        <stringProp name="ThreadGroup.num_threads">1</stringProp>
+        <stringProp name="ThreadGroup.ramp_time">1</stringProp>
+        <boolProp name="ThreadGroup.scheduler">false</boolProp>
+        <stringProp name="ThreadGroup.duration"></stringProp>
+        <stringProp name="ThreadGroup.delay"></stringProp>
+      </ThreadGroup>
+      <hashTree>
+        <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+          <collectionProp name="HeaderManager.headers">
+            <elementProp name="" elementType="Header">
+              <stringProp name="Header.name">Content-Type</stringProp>
+              <stringProp name="Header.value">application/json</stringProp>
+            </elementProp>
+          </collectionProp>
+        </HeaderManager>
+        <hashTree/>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="HTTP Request" enabled="true">
+          <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">{&#xd;
+ &quot;username&quot;: &quot;kelle1&quot;,&#xd;
+ &quot;password&quot;: &quot;Password1&quot;&#xd;
+}</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain">${environment}</stringProp>
+          <stringProp name="HTTPSampler.port"></stringProp>
+          <stringProp name="HTTPSampler.protocol">https</stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path">/login</stringProp>
+          <stringProp name="HTTPSampler.method">POST</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree" enabled="true">
+            <boolProp name="ResultCollector.error_logging">false</boolProp>
+            <objProp>
+              <name>saveConfig</name>
+              <value class="SampleSaveConfiguration">
+                <time>true</time>
+                <latency>true</latency>
+                <timestamp>true</timestamp>
+                <success>true</success>
+                <label>true</label>
+                <code>true</code>
+                <message>true</message>
+                <threadName>true</threadName>
+                <dataType>true</dataType>
+                <encoding>false</encoding>
+                <assertions>true</assertions>
+                <subresults>true</subresults>
+                <responseData>false</responseData>
+                <samplerData>false</samplerData>
+                <xml>false</xml>
+                <fieldNames>true</fieldNames>
+                <responseHeaders>false</responseHeaders>
+                <requestHeaders>false</requestHeaders>
+                <responseDataOnError>false</responseDataOnError>
+                <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
+                <assertionsResultsToSave>0</assertionsResultsToSave>
+                <bytes>true</bytes>
+                <sentBytes>true</sentBytes>
+                <url>true</url>
+                <threadCounts>true</threadCounts>
+                <idleTime>true</idleTime>
+                <connectTime>true</connectTime>
+              </value>
+            </objProp>
+            <stringProp name="filename"></stringProp>
+          </ResultCollector>
+          <hashTree/>
+          <com.atlantbh.jmeter.plugins.jsonutils.jsonpathextractor.JSONPathExtractor guiclass="com.atlantbh.jmeter.plugins.jsonutils.jsonpathextractor.gui.JSONPathExtractorGui" testclass="com.atlantbh.jmeter.plugins.jsonutils.jsonpathextractor.JSONPathExtractor" testname="jp@gc - JSON/YAML Path Extractor" enabled="true">
+            <stringProp name="VAR">v_access_token</stringProp>
+            <stringProp name="JSONPATH">$.access_token</stringProp>
+            <stringProp name="DEFAULT">ERROR</stringProp>
+            <stringProp name="VARIABLE"></stringProp>
+            <stringProp name="SUBJECT">BODY</stringProp>
+            <stringProp name="INPUT_FORMAT">JSON</stringProp>
+          </com.atlantbh.jmeter.plugins.jsonutils.jsonpathextractor.JSONPathExtractor>
+          <hashTree/>
+          <BeanShellAssertion guiclass="BeanShellAssertionGui" testclass="BeanShellAssertion" testname="BeanShell Assertion" enabled="true">
+            <stringProp name="BeanShellAssertion.query">${__setProperty(v_access_token, ${v_access_token})};</stringProp>
+            <stringProp name="BeanShellAssertion.filename"></stringProp>
+            <stringProp name="BeanShellAssertion.parameters"></stringProp>
+            <boolProp name="BeanShellAssertion.resetInterpreter">false</boolProp>
+          </BeanShellAssertion>
+          <hashTree/>
+        </hashTree>
+        <DebugSampler guiclass="TestBeanGUI" testclass="DebugSampler" testname="Debug Sampler" enabled="true">
+          <boolProp name="displayJMeterProperties">false</boolProp>
+          <boolProp name="displayJMeterVariables">true</boolProp>
+          <boolProp name="displaySystemProperties">false</boolProp>
+        </DebugSampler>
+        <hashTree>
+          <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree" enabled="true">
+            <boolProp name="ResultCollector.error_logging">false</boolProp>
+            <objProp>
+              <name>saveConfig</name>
+              <value class="SampleSaveConfiguration">
+                <time>true</time>
+                <latency>true</latency>
+                <timestamp>true</timestamp>
+                <success>true</success>
+                <label>true</label>
+                <code>true</code>
+                <message>true</message>
+                <threadName>true</threadName>
+                <dataType>true</dataType>
+                <encoding>false</encoding>
+                <assertions>true</assertions>
+                <subresults>true</subresults>
+                <responseData>false</responseData>
+                <samplerData>false</samplerData>
+                <xml>false</xml>
+                <fieldNames>true</fieldNames>
+                <responseHeaders>false</responseHeaders>
+                <requestHeaders>false</requestHeaders>
+                <responseDataOnError>false</responseDataOnError>
+                <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
+                <assertionsResultsToSave>0</assertionsResultsToSave>
+                <bytes>true</bytes>
+                <sentBytes>true</sentBytes>
+                <url>true</url>
+                <threadCounts>true</threadCounts>
+                <idleTime>true</idleTime>
+                <connectTime>true</connectTime>
+              </value>
+            </objProp>
+            <stringProp name="filename"></stringProp>
+          </ResultCollector>
+          <hashTree/>
+        </hashTree>
+      </hashTree>
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Thread Email Module Group v2" enabled="true">
+        <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
+        <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller" enabled="true">
+          <boolProp name="LoopController.continue_forever">false</boolProp>
+          <stringProp name="LoopController.loops">1</stringProp>
+        </elementProp>
+        <stringProp name="ThreadGroup.num_threads">1</stringProp>
+        <stringProp name="ThreadGroup.ramp_time">1</stringProp>
+        <boolProp name="ThreadGroup.scheduler">false</boolProp>
+        <stringProp name="ThreadGroup.duration"></stringProp>
+        <stringProp name="ThreadGroup.delay"></stringProp>
+      </ThreadGroup>
+      <hashTree>
+        <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+          <collectionProp name="HeaderManager.headers">
+            <elementProp name="" elementType="Header">
+              <stringProp name="Header.name">Content-Type</stringProp>
+              <stringProp name="Header.value">application/json</stringProp>
+            </elementProp>
+            <elementProp name="" elementType="Header">
+              <stringProp name="Header.name">Authorization</stringProp>
+              <stringProp name="Header.value">Bearer ${__property(v_access_token)}</stringProp>
+            </elementProp>
+            <elementProp name="" elementType="Header">
+              <stringProp name="Header.name">x-api-sync</stringProp>
+              <stringProp name="Header.value">1</stringProp>
+            </elementProp>
+            <elementProp name="" elementType="Header">
+              <stringProp name="Header.name">Accept</stringProp>
+              <stringProp name="Header.value">application/vnd.api+json</stringProp>
+            </elementProp>
+            <elementProp name="" elementType="Header">
+              <stringProp name="Header.name">cache-control</stringProp>
+              <stringProp name="Header.value">no-cache</stringProp>
+            </elementProp>
+            <elementProp name="" elementType="Header">
+              <stringProp name="Header.name">X-API-FORCED</stringProp>
+              <stringProp name="Header.value">1</stringProp>
+            </elementProp>
+            <elementProp name="" elementType="Header">
+              <stringProp name="Header.name">x-Api-Override-Email</stringProp>
+              <stringProp name="Header.value">1</stringProp>
+            </elementProp>
+          </collectionProp>
+        </HeaderManager>
+        <hashTree/>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="HTTP List Email Request" enabled="true">
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
+            <collectionProp name="Arguments.arguments"/>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain">${environment}</stringProp>
+          <stringProp name="HTTPSampler.port"></stringProp>
+          <stringProp name="HTTPSampler.protocol">https</stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path">v2/contacts/emails</stringProp>
+          <stringProp name="HTTPSampler.method">GET</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Response Assertion" enabled="true">
+            <collectionProp name="Asserion.test_strings">
+              <stringProp name="49586">200</stringProp>
+            </collectionProp>
+            <stringProp name="Assertion.custom_message"></stringProp>
+            <stringProp name="Assertion.test_field">Assertion.response_code</stringProp>
+            <boolProp name="Assertion.assume_success">false</boolProp>
+            <intProp name="Assertion.test_type">16</intProp>
+          </ResponseAssertion>
+          <hashTree/>
+        </hashTree>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="HTTP Create Contact Request" enabled="true">
+          <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">{&#xd;
+	&quot;data&quot;: {&#xd;
+		&quot;attributes&quot;: {&#xd;
+			&quot;prefix&quot;: &quot;Mr&quot;,&#xd;
+			&quot;first_name&quot;: &quot;Telly&quot;,&#xd;
+			&quot;middle_name&quot;: &quot;Senior&quot;,&#xd;
+			&quot;last_name&quot;: &quot;Beier&quot;,&#xd;
+			&quot;preferred_name&quot;: &quot;Telly Beier&quot;,&#xd;
+			&quot;legal_name&quot;: &quot;Telly Senior Beier&quot;,&#xd;
+			&quot;suffix&quot;: &quot;I&quot;,&#xd;
+			&quot;date_of_birth&quot;: &quot;2019-05-25&quot;,&#xd;
+			&quot;timeframe&quot;: &quot;1 to 12 months&quot;,&#xd;
+			&quot;contact_types&quot;: [&#xd;
+				&quot;buyer&quot;,&#xd;
+				&quot;seller&quot;,&#xd;
+				&quot;vendor&quot;,&#xd;
+				&quot;investor&quot;,&#xd;
+				&quot;agent&quot;,&#xd;
+				&quot;lender&quot;,&#xd;
+				&quot;past clients&quot;&#xd;
+			],&#xd;
+			&quot;motivations&quot;: [&#xd;
+				&quot;moving-up&quot;,&#xd;
+				&quot;downsizing&quot;,&#xd;
+				&quot;vacation-home&quot;,&#xd;
+				&quot;first-home&quot;,&#xd;
+				&quot;schools&quot;,&#xd;
+				&quot;relocation&quot;,&#xd;
+				&quot;retirement&quot;,&#xd;
+				&quot;personal&quot;,&#xd;
+				&quot;financial&quot;&#xd;
+			],&#xd;
+			&quot;phase&quot;: 1,&#xd;
+			&quot;primary_motivation_note&quot;: &quot;Telly.Beier&apos;s primary note&quot;,&#xd;
+			&quot;is_pre_approved&quot;: true,&#xd;
+			&quot;is_primary&quot;: true,&#xd;
+			&quot;status&quot;: 1,&#xd;
+			&quot;stage&quot;: &quot;prospect&quot;,&#xd;
+			&quot;lead_type&quot;: &quot;rent&quot;,&#xd;
+			&quot;is_starred&quot;: false,&#xd;
+			&quot;available_to_contact_date&quot;: &quot;2019-05-25&quot;,&#xd;
+			&quot;pre_approved_amount&quot;: 6,&#xd;
+			&quot;number_in_household&quot;: 13,&#xd;
+			&quot;background_info&quot;: &quot;bg info&quot;,&#xd;
+			&quot;profession_title&quot;: &quot;Teller&quot;,&#xd;
+			&quot;profession_department&quot;: &quot;Logistics&quot;,&#xd;
+			&quot;is_connected&quot;: true,&#xd;
+			&quot;system-metas&quot;: [&#xd;
+				{&#xd;
+					&quot;id&quot;: 0,&#xd;
+					&quot;name&quot;: &quot;piesync&quot;,&#xd;
+					&quot;variable&quot;: &quot;piesync_trash&quot;,&#xd;
+					&quot;type&quot;: &quot;1&quot;,&#xd;
+					&quot;value&quot;: &quot;true&quot;&#xd;
+				}&#xd;
+			],&#xd;
+			&quot;team_id&quot;: 1,&#xd;
+			&quot;primary_address&quot;: &quot;address 1&quot;,&#xd;
+			&quot;language&quot;: &quot;en&quot;,&#xd;
+			&quot;initial_contact_date&quot;: &quot;2017-06-23 20:27:16&quot;&#xd;
+		},&#xd;
+		&quot;relationships&quot;: {&#xd;
+			&quot;contact-leads&quot;: {&#xd;
+				&quot;data&quot;: {&#xd;
+					&quot;id&quot;: 12,&#xd;
+					&quot;attributes&quot;: {&#xd;
+						&quot;route_id&quot;: 3,&#xd;
+						&quot;is_buyer&quot;: 1,&#xd;
+						&quot;is_team&quot;: 1,&#xd;
+						&quot;seller_listing_address&quot;: &quot;917 4th St. Millville, NJ 08332&quot;,&#xd;
+						&quot;buyer_price_min&quot;: 71000,&#xd;
+						&quot;buyer_price_max&quot;: 121000,&#xd;
+						&quot;is_assigned&quot;: 1,&#xd;
+						&quot;assignment&quot;: &quot;as&quot;,&#xd;
+						&quot;leader_id&quot;: 13,&#xd;
+						&quot;status&quot;: 10,&#xd;
+						&quot;preferred_contact_by&quot;: &quot;email&quot;,&#xd;
+						&quot;about&quot;: &quot;about&quot;,&#xd;
+						&quot;description&quot;: &quot;desc&quot;&#xd;
+					}&#xd;
+				}&#xd;
+			},&#xd;
+			&quot;addresses&quot;: {&#xd;
+				&quot;data&quot;: [&#xd;
+					{&#xd;
+						&quot;attributes&quot;: {&#xd;
+							&quot;address_line_1&quot;: &quot;wow&quot;,&#xd;
+							&quot;address_line_2&quot;: &quot;wow&quot;,&#xd;
+							&quot;address_line_3&quot;: &quot;wow&quot;,&#xd;
+							&quot;address_line_4&quot;: &quot;wow&quot;,&#xd;
+							&quot;city&quot;: &quot;wow&quot;,&#xd;
+							&quot;city_locality&quot;: &quot;cupiditate 4&quot;,&#xd;
+							&quot;state_region&quot;: &quot;wow&quot;,&#xd;
+							&quot;country&quot;: &quot;Indonesia&quot;,&#xd;
+							&quot;postal_code&quot;: &quot;16810&quot;,&#xd;
+							&quot;lat&quot;: -57.359989,&#xd;
+							&quot;lng&quot;: 54.022906,&#xd;
+							&quot;is_current&quot;: false,&#xd;
+							&quot;ownership_status&quot;: 2,&#xd;
+							&quot;description&quot;: &quot;Best place in the world 14&quot;,&#xd;
+							&quot;neighborhood&quot;: &quot;some neighborhood&quot;,&#xd;
+							&quot;is_primary&quot;: true,&#xd;
+							&quot;label&quot;: &quot;home&quot;,&#xd;
+							&quot;is_mailing_address&quot;: true&#xd;
+						}&#xd;
+					}&#xd;
+				]&#xd;
+			},&#xd;
+			&quot;phones&quot;: {&#xd;
+				&quot;data&quot;: [&#xd;
+					{&#xd;
+						&quot;attributes&quot;: {&#xd;
+							&quot;number&quot;: &quot;202-555-7341&quot;,&#xd;
+							&quot;country_code&quot;: &quot;US&quot;,&#xd;
+							&quot;formatted_number&quot;: &quot;202-555-7341&quot;,&#xd;
+							&quot;is_primary&quot;: true,&#xd;
+							&quot;is_current&quot;: true,&#xd;
+							&quot;label&quot;: &quot;home&quot;&#xd;
+						}&#xd;
+					}&#xd;
+				]&#xd;
+			},&#xd;
+			&quot;notes&quot;: {&#xd;
+				&quot;data&quot;: [&#xd;
+					{&#xd;
+						&quot;attributes&quot;: {&#xd;
+							&quot;note&quot;: &quot;update new&quot;,&#xd;
+							&quot;title&quot;: &quot;updated title 2&quot;&#xd;
+						}&#xd;
+					}&#xd;
+				]&#xd;
+			},&#xd;
+			&quot;object-custom-fields&quot;: {&#xd;
+				&quot;data&quot;: [&#xd;
+					{&#xd;
+						&quot;attributes&quot;: {&#xd;
+							&quot;custom_field&quot;: &quot;4 notes&quot;,&#xd;
+							&quot;custom_field_value&quot;: &quot;another&quot;,&#xd;
+							&quot;custom_field_tag&quot;: {&#xd;
+								&quot;tag&quot;: &quot;blender&quot;,&#xd;
+								&quot;color&quot;: &quot;blue&quot;&#xd;
+							}&#xd;
+						}&#xd;
+					}&#xd;
+				]&#xd;
+			}&#xd;
+		}&#xd;
+	}&#xd;
+}</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain">${environment}</stringProp>
+          <stringProp name="HTTPSampler.port"></stringProp>
+          <stringProp name="HTTPSampler.protocol">https</stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path">v2/contacts/</stringProp>
+          <stringProp name="HTTPSampler.method">POST</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Response Assertion" enabled="true">
+            <collectionProp name="Asserion.test_strings">
+              <stringProp name="49587">201</stringProp>
+            </collectionProp>
+            <stringProp name="Assertion.custom_message"></stringProp>
+            <stringProp name="Assertion.test_field">Assertion.response_code</stringProp>
+            <boolProp name="Assertion.assume_success">false</boolProp>
+            <intProp name="Assertion.test_type">16</intProp>
+          </ResponseAssertion>
+          <hashTree/>
+          <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="JSON idContact Extractor" enabled="true">
+            <stringProp name="JSONPostProcessor.referenceNames">idContactExtractor</stringProp>
+            <stringProp name="JSONPostProcessor.jsonPathExprs">data.id</stringProp>
+            <stringProp name="JSONPostProcessor.match_numbers"></stringProp>
+          </JSONPostProcessor>
+          <hashTree/>
+        </hashTree>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="HTTP Create Email Request" enabled="true">
+          <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">{&#xd;
+  &quot;data&quot;: {&#xd;
+    &quot;type&quot;: &quot;emails&quot;,&#xd;
+    &quot;attributes&quot;: {&#xd;
+      &quot;email&quot;: &quot;${email3}@gmail.com&quot;,&#xd;
+      &quot;label&quot;: &quot;work&quot;,&#xd;
+      &quot;is_primary&quot;: false,&#xd;
+      &quot;is_valid&quot;: true&#xd;
+    },&#xd;
+    &quot;relationships&quot;: {&#xd;
+      &quot;contact&quot;: {&#xd;
+        &quot;data&quot;: {&#xd;
+          &quot;id&quot;: &quot;${idContactExtractor}&quot;&#xd;
+        }&#xd;
+      }&#xd;
+    }&#xd;
+  }&#xd;
+}</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain">${environment}</stringProp>
+          <stringProp name="HTTPSampler.port"></stringProp>
+          <stringProp name="HTTPSampler.protocol">https</stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path">v2/contacts/emails</stringProp>
+          <stringProp name="HTTPSampler.method">POST</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Response Assertion" enabled="true">
+            <collectionProp name="Asserion.test_strings">
+              <stringProp name="49587">201</stringProp>
+            </collectionProp>
+            <stringProp name="Assertion.custom_message"></stringProp>
+            <stringProp name="Assertion.test_field">Assertion.response_code</stringProp>
+            <boolProp name="Assertion.assume_success">false</boolProp>
+            <intProp name="Assertion.test_type">16</intProp>
+          </ResponseAssertion>
+          <hashTree/>
+          <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="JSON idEmail Extractor" enabled="true">
+            <stringProp name="JSONPostProcessor.referenceNames">idEmailExtractor</stringProp>
+            <stringProp name="JSONPostProcessor.jsonPathExprs">data.id</stringProp>
+            <stringProp name="JSONPostProcessor.match_numbers"></stringProp>
+          </JSONPostProcessor>
+          <hashTree/>
+          <JSONPathAssertion guiclass="JSONPathAssertionGui" testclass="JSONPathAssertion" testname="$.data.type" enabled="true">
+            <stringProp name="JSON_PATH">$.data.type</stringProp>
+            <stringProp name="EXPECTED_VALUE">emails</stringProp>
+            <boolProp name="JSONVALIDATION">true</boolProp>
+            <boolProp name="EXPECT_NULL">false</boolProp>
+            <boolProp name="INVERT">false</boolProp>
+            <boolProp name="ISREGEX">false</boolProp>
+          </JSONPathAssertion>
+          <hashTree/>
+          <JSONPathAssertion guiclass="JSONPathAssertionGui" testclass="JSONPathAssertion" testname="$..attributes.email" enabled="true">
+            <stringProp name="JSON_PATH">$..attributes.email</stringProp>
+            <stringProp name="EXPECTED_VALUE">${email3}@gmail.com</stringProp>
+            <boolProp name="JSONVALIDATION">true</boolProp>
+            <boolProp name="EXPECT_NULL">false</boolProp>
+            <boolProp name="INVERT">false</boolProp>
+            <boolProp name="ISREGEX">false</boolProp>
+          </JSONPathAssertion>
+          <hashTree/>
+          <JSONPathAssertion guiclass="JSONPathAssertionGui" testclass="JSONPathAssertion" testname="$..attributes.overridden" enabled="true">
+            <stringProp name="JSON_PATH">$..attributes.overridden</stringProp>
+            <stringProp name="EXPECTED_VALUE">true</stringProp>
+            <boolProp name="JSONVALIDATION">true</boolProp>
+            <boolProp name="EXPECT_NULL">false</boolProp>
+            <boolProp name="INVERT">false</boolProp>
+            <boolProp name="ISREGEX">false</boolProp>
+          </JSONPathAssertion>
+          <hashTree/>
+          <JSONPathAssertion guiclass="JSONPathAssertionGui" testclass="JSONPathAssertion" testname="$..attributes.label" enabled="true">
+            <stringProp name="JSON_PATH">$..attributes.label</stringProp>
+            <stringProp name="EXPECTED_VALUE">work</stringProp>
+            <boolProp name="JSONVALIDATION">true</boolProp>
+            <boolProp name="EXPECT_NULL">false</boolProp>
+            <boolProp name="INVERT">false</boolProp>
+            <boolProp name="ISREGEX">false</boolProp>
+          </JSONPathAssertion>
+          <hashTree/>
+          <JSONPathAssertion guiclass="JSONPathAssertionGui" testclass="JSONPathAssertion" testname="$..attributes.is_primary" enabled="true">
+            <stringProp name="JSON_PATH">$..attributes.is_primary</stringProp>
+            <stringProp name="EXPECTED_VALUE">false</stringProp>
+            <boolProp name="JSONVALIDATION">true</boolProp>
+            <boolProp name="EXPECT_NULL">false</boolProp>
+            <boolProp name="INVERT">false</boolProp>
+            <boolProp name="ISREGEX">false</boolProp>
+          </JSONPathAssertion>
+          <hashTree/>
+          <JSONPathAssertion guiclass="JSONPathAssertionGui" testclass="JSONPathAssertion" testname="$..attributes.is_valid" enabled="true">
+            <stringProp name="JSON_PATH">$..attributes.is_valid</stringProp>
+            <stringProp name="EXPECTED_VALUE">true</stringProp>
+            <boolProp name="JSONVALIDATION">true</boolProp>
+            <boolProp name="EXPECT_NULL">false</boolProp>
+            <boolProp name="INVERT">false</boolProp>
+            <boolProp name="ISREGEX">false</boolProp>
+          </JSONPathAssertion>
+          <hashTree/>
+          <JSONPathAssertion guiclass="JSONPathAssertionGui" testclass="JSONPathAssertion" testname="$..relationships.data.type" enabled="true">
+            <stringProp name="JSON_PATH">$..relationships.contact.data.type</stringProp>
+            <stringProp name="EXPECTED_VALUE">contact</stringProp>
+            <boolProp name="JSONVALIDATION">true</boolProp>
+            <boolProp name="EXPECT_NULL">false</boolProp>
+            <boolProp name="INVERT">false</boolProp>
+            <boolProp name="ISREGEX">false</boolProp>
+          </JSONPathAssertion>
+          <hashTree/>
+          <JSONPathAssertion guiclass="JSONPathAssertionGui" testclass="JSONPathAssertion" testname="$.included[0].type" enabled="true">
+            <stringProp name="JSON_PATH">$.included[0].type</stringProp>
+            <stringProp name="EXPECTED_VALUE">contact</stringProp>
+            <boolProp name="JSONVALIDATION">true</boolProp>
+            <boolProp name="EXPECT_NULL">false</boolProp>
+            <boolProp name="INVERT">false</boolProp>
+            <boolProp name="ISREGEX">false</boolProp>
+          </JSONPathAssertion>
+          <hashTree/>
+          <JSONPathAssertion guiclass="JSONPathAssertionGui" testclass="JSONPathAssertion" testname="$.included[0].attributes.prefix" enabled="true">
+            <stringProp name="JSON_PATH">$.included[0].attributes.prefix</stringProp>
+            <stringProp name="EXPECTED_VALUE">Mr</stringProp>
+            <boolProp name="JSONVALIDATION">true</boolProp>
+            <boolProp name="EXPECT_NULL">false</boolProp>
+            <boolProp name="INVERT">false</boolProp>
+            <boolProp name="ISREGEX">false</boolProp>
+          </JSONPathAssertion>
+          <hashTree/>
+          <JSONPathAssertion guiclass="JSONPathAssertionGui" testclass="JSONPathAssertion" testname="$.included[0].attributes.first_name" enabled="true">
+            <stringProp name="JSON_PATH">$.included[0].attributes.first_name</stringProp>
+            <stringProp name="EXPECTED_VALUE">Telly</stringProp>
+            <boolProp name="JSONVALIDATION">true</boolProp>
+            <boolProp name="EXPECT_NULL">false</boolProp>
+            <boolProp name="INVERT">false</boolProp>
+            <boolProp name="ISREGEX">false</boolProp>
+          </JSONPathAssertion>
+          <hashTree/>
+        </hashTree>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="HTTP Show Email Request" enabled="true">
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
+            <collectionProp name="Arguments.arguments"/>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain">${environment}</stringProp>
+          <stringProp name="HTTPSampler.port"></stringProp>
+          <stringProp name="HTTPSampler.protocol">https</stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path">v2/contacts/emails/${idEmailExtractor}</stringProp>
+          <stringProp name="HTTPSampler.method">GET</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Response Assertion" enabled="true">
+            <collectionProp name="Asserion.test_strings">
+              <stringProp name="49586">200</stringProp>
+            </collectionProp>
+            <stringProp name="Assertion.custom_message"></stringProp>
+            <stringProp name="Assertion.test_field">Assertion.response_code</stringProp>
+            <boolProp name="Assertion.assume_success">false</boolProp>
+            <intProp name="Assertion.test_type">16</intProp>
+          </ResponseAssertion>
+          <hashTree/>
+        </hashTree>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="HTTP Update Email Request" enabled="true">
+          <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">{&#xd;
+  &quot;data&quot;: {&#xd;
+    &quot;type&quot;: &quot;emails&quot;,&#xd;
+    &quot;attributes&quot;: {&#xd;
+      &quot;email&quot;: &quot;${email4}@gmail.com&quot;,&#xd;
+      &quot;label&quot;: &quot;home&quot;,&#xd;
+      &quot;is_primary&quot;: true,&#xd;
+      &quot;is_valid&quot;: false&#xd;
+    },&#xd;
+    &quot;relationships&quot;: {&#xd;
+      &quot;contact&quot;: {&#xd;
+        &quot;data&quot;: {&#xd;
+          &quot;id&quot;: &quot;${idContactExtractor}&quot;&#xd;
+        }&#xd;
+      }&#xd;
+    }&#xd;
+  }&#xd;
+}</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain">${environment}</stringProp>
+          <stringProp name="HTTPSampler.port"></stringProp>
+          <stringProp name="HTTPSampler.protocol">https</stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path">v2/contacts/emails/${idEmailExtractor}</stringProp>
+          <stringProp name="HTTPSampler.method">PATCH</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Response Assertion" enabled="true">
+            <collectionProp name="Asserion.test_strings">
+              <stringProp name="49586">200</stringProp>
+            </collectionProp>
+            <stringProp name="Assertion.custom_message"></stringProp>
+            <stringProp name="Assertion.test_field">Assertion.response_code</stringProp>
+            <boolProp name="Assertion.assume_success">false</boolProp>
+            <intProp name="Assertion.test_type">16</intProp>
+          </ResponseAssertion>
+          <hashTree/>
+          <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="JSON idContact Extractor" enabled="true">
+            <stringProp name="JSONPostProcessor.referenceNames">idContactExtractor</stringProp>
+            <stringProp name="JSONPostProcessor.jsonPathExprs">data.relationships.contact.data.id</stringProp>
+            <stringProp name="JSONPostProcessor.match_numbers"></stringProp>
+          </JSONPostProcessor>
+          <hashTree/>
+          <JSONPathAssertion guiclass="JSONPathAssertionGui" testclass="JSONPathAssertion" testname="$.data.type" enabled="true">
+            <stringProp name="JSON_PATH">$.data.type</stringProp>
+            <stringProp name="EXPECTED_VALUE">emails</stringProp>
+            <boolProp name="JSONVALIDATION">true</boolProp>
+            <boolProp name="EXPECT_NULL">false</boolProp>
+            <boolProp name="INVERT">false</boolProp>
+            <boolProp name="ISREGEX">false</boolProp>
+          </JSONPathAssertion>
+          <hashTree/>
+          <JSONPathAssertion guiclass="JSONPathAssertionGui" testclass="JSONPathAssertion" testname="$..attributes.email" enabled="true">
+            <stringProp name="JSON_PATH">$..attributes.email</stringProp>
+            <stringProp name="EXPECTED_VALUE">${email4}@gmail.com</stringProp>
+            <boolProp name="JSONVALIDATION">true</boolProp>
+            <boolProp name="EXPECT_NULL">false</boolProp>
+            <boolProp name="INVERT">false</boolProp>
+            <boolProp name="ISREGEX">false</boolProp>
+          </JSONPathAssertion>
+          <hashTree/>
+          <JSONPathAssertion guiclass="JSONPathAssertionGui" testclass="JSONPathAssertion" testname="$..attributes.overridden" enabled="true">
+            <stringProp name="JSON_PATH">$..attributes.overridden</stringProp>
+            <stringProp name="EXPECTED_VALUE">true</stringProp>
+            <boolProp name="JSONVALIDATION">true</boolProp>
+            <boolProp name="EXPECT_NULL">false</boolProp>
+            <boolProp name="INVERT">false</boolProp>
+            <boolProp name="ISREGEX">false</boolProp>
+          </JSONPathAssertion>
+          <hashTree/>
+          <JSONPathAssertion guiclass="JSONPathAssertionGui" testclass="JSONPathAssertion" testname="$..attributes.label" enabled="true">
+            <stringProp name="JSON_PATH">$..attributes.label</stringProp>
+            <stringProp name="EXPECTED_VALUE">home</stringProp>
+            <boolProp name="JSONVALIDATION">true</boolProp>
+            <boolProp name="EXPECT_NULL">false</boolProp>
+            <boolProp name="INVERT">false</boolProp>
+            <boolProp name="ISREGEX">false</boolProp>
+          </JSONPathAssertion>
+          <hashTree/>
+          <JSONPathAssertion guiclass="JSONPathAssertionGui" testclass="JSONPathAssertion" testname="$..attributes.is_primary" enabled="true">
+            <stringProp name="JSON_PATH">$..attributes.is_primary</stringProp>
+            <stringProp name="EXPECTED_VALUE">true</stringProp>
+            <boolProp name="JSONVALIDATION">true</boolProp>
+            <boolProp name="EXPECT_NULL">false</boolProp>
+            <boolProp name="INVERT">false</boolProp>
+            <boolProp name="ISREGEX">false</boolProp>
+          </JSONPathAssertion>
+          <hashTree/>
+          <JSONPathAssertion guiclass="JSONPathAssertionGui" testclass="JSONPathAssertion" testname="$..attributes.is_valid" enabled="true">
+            <stringProp name="JSON_PATH">$..attributes.is_valid</stringProp>
+            <stringProp name="EXPECTED_VALUE">false</stringProp>
+            <boolProp name="JSONVALIDATION">true</boolProp>
+            <boolProp name="EXPECT_NULL">false</boolProp>
+            <boolProp name="INVERT">false</boolProp>
+            <boolProp name="ISREGEX">false</boolProp>
+          </JSONPathAssertion>
+          <hashTree/>
+          <JSONPathAssertion guiclass="JSONPathAssertionGui" testclass="JSONPathAssertion" testname="$..relationships.data.type" enabled="true">
+            <stringProp name="JSON_PATH">$..relationships.contact.data.type</stringProp>
+            <stringProp name="EXPECTED_VALUE">contact</stringProp>
+            <boolProp name="JSONVALIDATION">true</boolProp>
+            <boolProp name="EXPECT_NULL">false</boolProp>
+            <boolProp name="INVERT">false</boolProp>
+            <boolProp name="ISREGEX">false</boolProp>
+          </JSONPathAssertion>
+          <hashTree/>
+          <JSONPathAssertion guiclass="JSONPathAssertionGui" testclass="JSONPathAssertion" testname="$.included[0].type" enabled="true">
+            <stringProp name="JSON_PATH">$.included[0].type</stringProp>
+            <stringProp name="EXPECTED_VALUE">contact</stringProp>
+            <boolProp name="JSONVALIDATION">true</boolProp>
+            <boolProp name="EXPECT_NULL">false</boolProp>
+            <boolProp name="INVERT">false</boolProp>
+            <boolProp name="ISREGEX">false</boolProp>
+          </JSONPathAssertion>
+          <hashTree/>
+          <JSONPathAssertion guiclass="JSONPathAssertionGui" testclass="JSONPathAssertion" testname="$.included[0].attributes.prefix" enabled="true">
+            <stringProp name="JSON_PATH">$.included[0].attributes.prefix</stringProp>
+            <stringProp name="EXPECTED_VALUE">Mr</stringProp>
+            <boolProp name="JSONVALIDATION">true</boolProp>
+            <boolProp name="EXPECT_NULL">false</boolProp>
+            <boolProp name="INVERT">false</boolProp>
+            <boolProp name="ISREGEX">false</boolProp>
+          </JSONPathAssertion>
+          <hashTree/>
+          <JSONPathAssertion guiclass="JSONPathAssertionGui" testclass="JSONPathAssertion" testname="$.included[0].attributes.first_name" enabled="true">
+            <stringProp name="JSON_PATH">$.included[0].attributes.first_name</stringProp>
+            <stringProp name="EXPECTED_VALUE">Telly</stringProp>
+            <boolProp name="JSONVALIDATION">true</boolProp>
+            <boolProp name="EXPECT_NULL">false</boolProp>
+            <boolProp name="INVERT">false</boolProp>
+            <boolProp name="ISREGEX">false</boolProp>
+          </JSONPathAssertion>
+          <hashTree/>
+        </hashTree>
+        <DebugSampler guiclass="TestBeanGUI" testclass="DebugSampler" testname="Debug Sampler" enabled="true">
+          <boolProp name="displayJMeterProperties">false</boolProp>
+          <boolProp name="displayJMeterVariables">true</boolProp>
+          <boolProp name="displaySystemProperties">false</boolProp>
+        </DebugSampler>
+        <hashTree>
+          <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree" enabled="true">
+            <boolProp name="ResultCollector.error_logging">false</boolProp>
+            <objProp>
+              <name>saveConfig</name>
+              <value class="SampleSaveConfiguration">
+                <time>true</time>
+                <latency>true</latency>
+                <timestamp>true</timestamp>
+                <success>true</success>
+                <label>true</label>
+                <code>true</code>
+                <message>true</message>
+                <threadName>true</threadName>
+                <dataType>true</dataType>
+                <encoding>false</encoding>
+                <assertions>true</assertions>
+                <subresults>true</subresults>
+                <responseData>false</responseData>
+                <samplerData>false</samplerData>
+                <xml>false</xml>
+                <fieldNames>true</fieldNames>
+                <responseHeaders>false</responseHeaders>
+                <requestHeaders>false</requestHeaders>
+                <responseDataOnError>false</responseDataOnError>
+                <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
+                <assertionsResultsToSave>0</assertionsResultsToSave>
+                <bytes>true</bytes>
+                <sentBytes>true</sentBytes>
+                <url>true</url>
+                <threadCounts>true</threadCounts>
+                <idleTime>true</idleTime>
+                <connectTime>true</connectTime>
+              </value>
+            </objProp>
+            <stringProp name="filename"></stringProp>
+          </ResultCollector>
+          <hashTree/>
+        </hashTree>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="HTTP Delete Email Request" enabled="true">
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
+            <collectionProp name="Arguments.arguments"/>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain">${environment}</stringProp>
+          <stringProp name="HTTPSampler.port"></stringProp>
+          <stringProp name="HTTPSampler.protocol">https</stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path">v2/contacts/emails/${idEmailExtractor}</stringProp>
+          <stringProp name="HTTPSampler.method">DELETE</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Response Assertion" enabled="true">
+            <collectionProp name="Asserion.test_strings">
+              <stringProp name="49590">204</stringProp>
+            </collectionProp>
+            <stringProp name="Assertion.custom_message"></stringProp>
+            <stringProp name="Assertion.test_field">Assertion.response_code</stringProp>
+            <boolProp name="Assertion.assume_success">false</boolProp>
+            <intProp name="Assertion.test_type">16</intProp>
+          </ResponseAssertion>
+          <hashTree/>
+        </hashTree>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="HTTP Delete Contact Request" enabled="true">
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
+            <collectionProp name="Arguments.arguments"/>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain">${environment}</stringProp>
+          <stringProp name="HTTPSampler.port"></stringProp>
+          <stringProp name="HTTPSampler.protocol">https</stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path">v2/contacts/${idContactExtractor}</stringProp>
+          <stringProp name="HTTPSampler.method">DELETE</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Response Assertion" enabled="true">
+            <collectionProp name="Asserion.test_strings">
+              <stringProp name="49590">204</stringProp>
+            </collectionProp>
+            <stringProp name="Assertion.custom_message"></stringProp>
+            <stringProp name="Assertion.test_field">Assertion.response_code</stringProp>
+            <boolProp name="Assertion.assume_success">false</boolProp>
+            <intProp name="Assertion.test_type">16</intProp>
+          </ResponseAssertion>
+          <hashTree/>
+        </hashTree>
+        <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree" enabled="true">
+          <boolProp name="ResultCollector.error_logging">false</boolProp>
+          <objProp>
+            <name>saveConfig</name>
+            <value class="SampleSaveConfiguration">
+              <time>true</time>
+              <latency>true</latency>
+              <timestamp>true</timestamp>
+              <success>true</success>
+              <label>true</label>
+              <code>true</code>
+              <message>true</message>
+              <threadName>true</threadName>
+              <dataType>true</dataType>
+              <encoding>false</encoding>
+              <assertions>true</assertions>
+              <subresults>true</subresults>
+              <responseData>false</responseData>
+              <samplerData>false</samplerData>
+              <xml>false</xml>
+              <fieldNames>true</fieldNames>
+              <responseHeaders>false</responseHeaders>
+              <requestHeaders>false</requestHeaders>
+              <responseDataOnError>false</responseDataOnError>
+              <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
+              <assertionsResultsToSave>0</assertionsResultsToSave>
+              <bytes>true</bytes>
+              <sentBytes>true</sentBytes>
+              <url>true</url>
+              <threadCounts>true</threadCounts>
+              <idleTime>true</idleTime>
+              <connectTime>true</connectTime>
+            </value>
+          </objProp>
+          <stringProp name="filename"></stringProp>
+        </ResultCollector>
+        <hashTree/>
+        <ResultCollector guiclass="SummaryReport" testclass="ResultCollector" testname="Summary Report" enabled="true">
+          <boolProp name="ResultCollector.error_logging">false</boolProp>
+          <objProp>
+            <name>saveConfig</name>
+            <value class="SampleSaveConfiguration">
+              <time>true</time>
+              <latency>true</latency>
+              <timestamp>true</timestamp>
+              <success>true</success>
+              <label>true</label>
+              <code>true</code>
+              <message>true</message>
+              <threadName>true</threadName>
+              <dataType>true</dataType>
+              <encoding>false</encoding>
+              <assertions>true</assertions>
+              <subresults>true</subresults>
+              <responseData>false</responseData>
+              <samplerData>false</samplerData>
+              <xml>false</xml>
+              <fieldNames>true</fieldNames>
+              <responseHeaders>false</responseHeaders>
+              <requestHeaders>false</requestHeaders>
+              <responseDataOnError>false</responseDataOnError>
+              <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
+              <assertionsResultsToSave>0</assertionsResultsToSave>
+              <bytes>true</bytes>
+              <sentBytes>true</sentBytes>
+              <url>true</url>
+              <threadCounts>true</threadCounts>
+              <idleTime>true</idleTime>
+              <connectTime>true</connectTime>
+            </value>
+          </objProp>
+          <stringProp name="filename"></stringProp>
+        </ResultCollector>
+        <hashTree/>
+      </hashTree>
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Thread Delete Multi Email Module Group v2" enabled="true">
+        <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
+        <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller" enabled="true">
+          <boolProp name="LoopController.continue_forever">false</boolProp>
+          <stringProp name="LoopController.loops">1</stringProp>
+        </elementProp>
+        <stringProp name="ThreadGroup.num_threads">1</stringProp>
+        <stringProp name="ThreadGroup.ramp_time">1</stringProp>
+        <boolProp name="ThreadGroup.scheduler">false</boolProp>
+        <stringProp name="ThreadGroup.duration"></stringProp>
+        <stringProp name="ThreadGroup.delay"></stringProp>
+      </ThreadGroup>
+      <hashTree>
+        <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+          <collectionProp name="HeaderManager.headers">
+            <elementProp name="" elementType="Header">
+              <stringProp name="Header.name">Content-Type</stringProp>
+              <stringProp name="Header.value">application/json</stringProp>
+            </elementProp>
+            <elementProp name="" elementType="Header">
+              <stringProp name="Header.name">Authorization</stringProp>
+              <stringProp name="Header.value">Bearer ${__property(v_access_token)}</stringProp>
+            </elementProp>
+            <elementProp name="" elementType="Header">
+              <stringProp name="Header.name">x-api-sync</stringProp>
+              <stringProp name="Header.value">1</stringProp>
+            </elementProp>
+            <elementProp name="" elementType="Header">
+              <stringProp name="Header.name">Accept</stringProp>
+              <stringProp name="Header.value">application/vnd.api+json</stringProp>
+            </elementProp>
+            <elementProp name="" elementType="Header">
+              <stringProp name="Header.name">cache-control</stringProp>
+              <stringProp name="Header.value">no-cache</stringProp>
+            </elementProp>
+            <elementProp name="" elementType="Header">
+              <stringProp name="Header.name">X-API-FORCED</stringProp>
+              <stringProp name="Header.value">1</stringProp>
+            </elementProp>
+            <elementProp name="" elementType="Header">
+              <stringProp name="Header.name">x-Api-Override-Email</stringProp>
+              <stringProp name="Header.value">1</stringProp>
+            </elementProp>
+          </collectionProp>
+        </HeaderManager>
+        <hashTree/>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="HTTP Create Contact Request" enabled="true">
+          <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">{&#xd;
+	&quot;data&quot;: {&#xd;
+		&quot;attributes&quot;: {&#xd;
+			&quot;prefix&quot;: &quot;Mr&quot;,&#xd;
+			&quot;first_name&quot;: &quot;Telly&quot;,&#xd;
+			&quot;middle_name&quot;: &quot;Senior&quot;,&#xd;
+			&quot;last_name&quot;: &quot;Beier&quot;,&#xd;
+			&quot;preferred_name&quot;: &quot;Telly Beier&quot;,&#xd;
+			&quot;legal_name&quot;: &quot;Telly Senior Beier&quot;,&#xd;
+			&quot;suffix&quot;: &quot;I&quot;,&#xd;
+			&quot;date_of_birth&quot;: &quot;2019-05-25&quot;,&#xd;
+			&quot;timeframe&quot;: &quot;1 to 12 months&quot;,&#xd;
+			&quot;contact_types&quot;: [&#xd;
+				&quot;buyer&quot;,&#xd;
+				&quot;seller&quot;,&#xd;
+				&quot;vendor&quot;,&#xd;
+				&quot;investor&quot;,&#xd;
+				&quot;agent&quot;,&#xd;
+				&quot;lender&quot;,&#xd;
+				&quot;past clients&quot;&#xd;
+			],&#xd;
+			&quot;motivations&quot;: [&#xd;
+				&quot;moving-up&quot;,&#xd;
+				&quot;downsizing&quot;,&#xd;
+				&quot;vacation-home&quot;,&#xd;
+				&quot;first-home&quot;,&#xd;
+				&quot;schools&quot;,&#xd;
+				&quot;relocation&quot;,&#xd;
+				&quot;retirement&quot;,&#xd;
+				&quot;personal&quot;,&#xd;
+				&quot;financial&quot;&#xd;
+			],&#xd;
+			&quot;phase&quot;: 1,&#xd;
+			&quot;primary_motivation_note&quot;: &quot;Telly.Beier&apos;s primary note&quot;,&#xd;
+			&quot;is_pre_approved&quot;: true,&#xd;
+			&quot;is_primary&quot;: true,&#xd;
+			&quot;status&quot;: 1,&#xd;
+			&quot;stage&quot;: &quot;prospect&quot;,&#xd;
+			&quot;lead_type&quot;: &quot;rent&quot;,&#xd;
+			&quot;is_starred&quot;: false,&#xd;
+			&quot;available_to_contact_date&quot;: &quot;2019-05-25&quot;,&#xd;
+			&quot;pre_approved_amount&quot;: 6,&#xd;
+			&quot;number_in_household&quot;: 13,&#xd;
+			&quot;background_info&quot;: &quot;bg info&quot;,&#xd;
+			&quot;profession_title&quot;: &quot;Teller&quot;,&#xd;
+			&quot;profession_department&quot;: &quot;Logistics&quot;,&#xd;
+			&quot;is_connected&quot;: true,&#xd;
+			&quot;system-metas&quot;: [&#xd;
+				{&#xd;
+					&quot;id&quot;: 0,&#xd;
+					&quot;name&quot;: &quot;piesync&quot;,&#xd;
+					&quot;variable&quot;: &quot;piesync_trash&quot;,&#xd;
+					&quot;type&quot;: &quot;1&quot;,&#xd;
+					&quot;value&quot;: &quot;true&quot;&#xd;
+				}&#xd;
+			],&#xd;
+			&quot;team_id&quot;: 1,&#xd;
+			&quot;primary_address&quot;: &quot;address 1&quot;,&#xd;
+			&quot;language&quot;: &quot;en&quot;,&#xd;
+			&quot;initial_contact_date&quot;: &quot;2017-06-23 20:27:16&quot;&#xd;
+		},&#xd;
+		&quot;relationships&quot;: {&#xd;
+			&quot;contact-leads&quot;: {&#xd;
+				&quot;data&quot;: {&#xd;
+					&quot;id&quot;: 12,&#xd;
+					&quot;attributes&quot;: {&#xd;
+						&quot;route_id&quot;: 3,&#xd;
+						&quot;is_buyer&quot;: 1,&#xd;
+						&quot;is_team&quot;: 1,&#xd;
+						&quot;seller_listing_address&quot;: &quot;917 4th St. Millville, NJ 08332&quot;,&#xd;
+						&quot;buyer_price_min&quot;: 71000,&#xd;
+						&quot;buyer_price_max&quot;: 121000,&#xd;
+						&quot;is_assigned&quot;: 1,&#xd;
+						&quot;assignment&quot;: &quot;as&quot;,&#xd;
+						&quot;leader_id&quot;: 13,&#xd;
+						&quot;status&quot;: 10,&#xd;
+						&quot;preferred_contact_by&quot;: &quot;email&quot;,&#xd;
+						&quot;about&quot;: &quot;about&quot;,&#xd;
+						&quot;description&quot;: &quot;desc&quot;&#xd;
+					}&#xd;
+				}&#xd;
+			},&#xd;
+			&quot;addresses&quot;: {&#xd;
+				&quot;data&quot;: [&#xd;
+					{&#xd;
+						&quot;attributes&quot;: {&#xd;
+							&quot;address_line_1&quot;: &quot;wow&quot;,&#xd;
+							&quot;address_line_2&quot;: &quot;wow&quot;,&#xd;
+							&quot;address_line_3&quot;: &quot;wow&quot;,&#xd;
+							&quot;address_line_4&quot;: &quot;wow&quot;,&#xd;
+							&quot;city&quot;: &quot;wow&quot;,&#xd;
+							&quot;city_locality&quot;: &quot;cupiditate 4&quot;,&#xd;
+							&quot;state_region&quot;: &quot;wow&quot;,&#xd;
+							&quot;country&quot;: &quot;Indonesia&quot;,&#xd;
+							&quot;postal_code&quot;: &quot;16810&quot;,&#xd;
+							&quot;lat&quot;: -57.359989,&#xd;
+							&quot;lng&quot;: 54.022906,&#xd;
+							&quot;is_current&quot;: false,&#xd;
+							&quot;ownership_status&quot;: 2,&#xd;
+							&quot;description&quot;: &quot;Best place in the world 14&quot;,&#xd;
+							&quot;neighborhood&quot;: &quot;some neighborhood&quot;,&#xd;
+							&quot;is_primary&quot;: true,&#xd;
+							&quot;label&quot;: &quot;home&quot;,&#xd;
+							&quot;is_mailing_address&quot;: true&#xd;
+						}&#xd;
+					}&#xd;
+				]&#xd;
+			},&#xd;
+			&quot;phones&quot;: {&#xd;
+				&quot;data&quot;: [&#xd;
+					{&#xd;
+						&quot;attributes&quot;: {&#xd;
+							&quot;number&quot;: &quot;202-555-7341&quot;,&#xd;
+							&quot;country_code&quot;: &quot;US&quot;,&#xd;
+							&quot;formatted_number&quot;: &quot;202-555-7341&quot;,&#xd;
+							&quot;is_primary&quot;: true,&#xd;
+							&quot;is_current&quot;: true,&#xd;
+							&quot;label&quot;: &quot;home&quot;&#xd;
+						}&#xd;
+					}&#xd;
+				]&#xd;
+			},&#xd;
+			&quot;notes&quot;: {&#xd;
+				&quot;data&quot;: [&#xd;
+					{&#xd;
+						&quot;attributes&quot;: {&#xd;
+							&quot;note&quot;: &quot;update new&quot;,&#xd;
+							&quot;title&quot;: &quot;updated title 2&quot;&#xd;
+						}&#xd;
+					}&#xd;
+				]&#xd;
+			},&#xd;
+			&quot;object-custom-fields&quot;: {&#xd;
+				&quot;data&quot;: [&#xd;
+					{&#xd;
+						&quot;attributes&quot;: {&#xd;
+							&quot;custom_field&quot;: &quot;4 notes&quot;,&#xd;
+							&quot;custom_field_value&quot;: &quot;another&quot;,&#xd;
+							&quot;custom_field_tag&quot;: {&#xd;
+								&quot;tag&quot;: &quot;blender&quot;,&#xd;
+								&quot;color&quot;: &quot;blue&quot;&#xd;
+							}&#xd;
+						}&#xd;
+					}&#xd;
+				]&#xd;
+			}&#xd;
+		}&#xd;
+	}&#xd;
+}</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain">${environment}</stringProp>
+          <stringProp name="HTTPSampler.port"></stringProp>
+          <stringProp name="HTTPSampler.protocol">https</stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path">v2/contacts/</stringProp>
+          <stringProp name="HTTPSampler.method">POST</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Response Assertion" enabled="true">
+            <collectionProp name="Asserion.test_strings">
+              <stringProp name="49587">201</stringProp>
+            </collectionProp>
+            <stringProp name="Assertion.custom_message"></stringProp>
+            <stringProp name="Assertion.test_field">Assertion.response_code</stringProp>
+            <boolProp name="Assertion.assume_success">false</boolProp>
+            <intProp name="Assertion.test_type">16</intProp>
+          </ResponseAssertion>
+          <hashTree/>
+          <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="JSON idContact Extractor" enabled="true">
+            <stringProp name="JSONPostProcessor.referenceNames">idContactExtractor</stringProp>
+            <stringProp name="JSONPostProcessor.jsonPathExprs">data.id</stringProp>
+            <stringProp name="JSONPostProcessor.match_numbers"></stringProp>
+          </JSONPostProcessor>
+          <hashTree/>
+        </hashTree>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="HTTP Create Email Request 1" enabled="true">
+          <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">{&#xd;
+  &quot;data&quot;: {&#xd;
+    &quot;type&quot;: &quot;emails&quot;,&#xd;
+    &quot;attributes&quot;: {&#xd;
+      &quot;email&quot;: &quot;${email8}@gmail.com&quot;,&#xd;
+      &quot;label&quot;: &quot;work&quot;,&#xd;
+      &quot;is_primary&quot;: false,&#xd;
+      &quot;is_valid&quot;: true&#xd;
+    },&#xd;
+    &quot;relationships&quot;: {&#xd;
+      &quot;contact&quot;: {&#xd;
+        &quot;data&quot;: {&#xd;
+          &quot;id&quot;: &quot;${idContactExtractor}&quot;&#xd;
+        }&#xd;
+      }&#xd;
+    }&#xd;
+  }&#xd;
+}</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain">${environment}</stringProp>
+          <stringProp name="HTTPSampler.port"></stringProp>
+          <stringProp name="HTTPSampler.protocol">https</stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path">v2/contacts/emails</stringProp>
+          <stringProp name="HTTPSampler.method">POST</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Response Assertion" enabled="true">
+            <collectionProp name="Asserion.test_strings">
+              <stringProp name="49587">201</stringProp>
+            </collectionProp>
+            <stringProp name="Assertion.custom_message"></stringProp>
+            <stringProp name="Assertion.test_field">Assertion.response_code</stringProp>
+            <boolProp name="Assertion.assume_success">false</boolProp>
+            <intProp name="Assertion.test_type">16</intProp>
+          </ResponseAssertion>
+          <hashTree/>
+          <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="JSON idEmail Extractor" enabled="true">
+            <stringProp name="JSONPostProcessor.referenceNames">idEmailExtractor1</stringProp>
+            <stringProp name="JSONPostProcessor.jsonPathExprs">data.id</stringProp>
+            <stringProp name="JSONPostProcessor.match_numbers"></stringProp>
+          </JSONPostProcessor>
+          <hashTree/>
+        </hashTree>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="HTTP Create Email Request 2" enabled="true">
+          <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">{&#xd;
+  &quot;data&quot;: {&#xd;
+    &quot;type&quot;: &quot;emails&quot;,&#xd;
+    &quot;attributes&quot;: {&#xd;
+      &quot;email&quot;: &quot;${email9}@gmail.com&quot;,&#xd;
+      &quot;label&quot;: &quot;work&quot;,&#xd;
+      &quot;is_primary&quot;: false,&#xd;
+      &quot;is_valid&quot;: true&#xd;
+    },&#xd;
+    &quot;relationships&quot;: {&#xd;
+      &quot;contact&quot;: {&#xd;
+        &quot;data&quot;: {&#xd;
+          &quot;id&quot;: &quot;${idContactExtractor}&quot;&#xd;
+        }&#xd;
+      }&#xd;
+    }&#xd;
+  }&#xd;
+}</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain">${environment}</stringProp>
+          <stringProp name="HTTPSampler.port"></stringProp>
+          <stringProp name="HTTPSampler.protocol">https</stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path">v2/contacts/emails</stringProp>
+          <stringProp name="HTTPSampler.method">POST</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Response Assertion" enabled="true">
+            <collectionProp name="Asserion.test_strings">
+              <stringProp name="49587">201</stringProp>
+            </collectionProp>
+            <stringProp name="Assertion.custom_message"></stringProp>
+            <stringProp name="Assertion.test_field">Assertion.response_code</stringProp>
+            <boolProp name="Assertion.assume_success">false</boolProp>
+            <intProp name="Assertion.test_type">16</intProp>
+          </ResponseAssertion>
+          <hashTree/>
+          <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="JSON idEmail Extractor" enabled="true">
+            <stringProp name="JSONPostProcessor.referenceNames">idEmailExtractor2</stringProp>
+            <stringProp name="JSONPostProcessor.jsonPathExprs">data.id</stringProp>
+            <stringProp name="JSONPostProcessor.match_numbers"></stringProp>
+          </JSONPostProcessor>
+          <hashTree/>
+        </hashTree>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="HTTP Create Email Request 3" enabled="true">
+          <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">{&#xd;
+  &quot;data&quot;: {&#xd;
+    &quot;type&quot;: &quot;emails&quot;,&#xd;
+    &quot;attributes&quot;: {&#xd;
+      &quot;email&quot;: &quot;${email10}@gmail.com&quot;,&#xd;
+      &quot;label&quot;: &quot;work&quot;,&#xd;
+      &quot;is_primary&quot;: false,&#xd;
+      &quot;is_valid&quot;: true&#xd;
+    },&#xd;
+    &quot;relationships&quot;: {&#xd;
+      &quot;contact&quot;: {&#xd;
+        &quot;data&quot;: {&#xd;
+          &quot;id&quot;: &quot;${idContactExtractor}&quot;&#xd;
+        }&#xd;
+      }&#xd;
+    }&#xd;
+  }&#xd;
+}</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain">${environment}</stringProp>
+          <stringProp name="HTTPSampler.port"></stringProp>
+          <stringProp name="HTTPSampler.protocol">https</stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path">v2/contacts/emails</stringProp>
+          <stringProp name="HTTPSampler.method">POST</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Response Assertion" enabled="true">
+            <collectionProp name="Asserion.test_strings">
+              <stringProp name="49587">201</stringProp>
+            </collectionProp>
+            <stringProp name="Assertion.custom_message"></stringProp>
+            <stringProp name="Assertion.test_field">Assertion.response_code</stringProp>
+            <boolProp name="Assertion.assume_success">false</boolProp>
+            <intProp name="Assertion.test_type">16</intProp>
+          </ResponseAssertion>
+          <hashTree/>
+          <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="JSON idEmail Extractor" enabled="true">
+            <stringProp name="JSONPostProcessor.referenceNames">idEmailExtractor3</stringProp>
+            <stringProp name="JSONPostProcessor.jsonPathExprs">data.id</stringProp>
+            <stringProp name="JSONPostProcessor.match_numbers"></stringProp>
+          </JSONPostProcessor>
+          <hashTree/>
+        </hashTree>
+        <DebugSampler guiclass="TestBeanGUI" testclass="DebugSampler" testname="Debug Sampler" enabled="true">
+          <boolProp name="displayJMeterProperties">false</boolProp>
+          <boolProp name="displayJMeterVariables">true</boolProp>
+          <boolProp name="displaySystemProperties">false</boolProp>
+        </DebugSampler>
+        <hashTree>
+          <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree" enabled="true">
+            <boolProp name="ResultCollector.error_logging">false</boolProp>
+            <objProp>
+              <name>saveConfig</name>
+              <value class="SampleSaveConfiguration">
+                <time>true</time>
+                <latency>true</latency>
+                <timestamp>true</timestamp>
+                <success>true</success>
+                <label>true</label>
+                <code>true</code>
+                <message>true</message>
+                <threadName>true</threadName>
+                <dataType>true</dataType>
+                <encoding>false</encoding>
+                <assertions>true</assertions>
+                <subresults>true</subresults>
+                <responseData>false</responseData>
+                <samplerData>false</samplerData>
+                <xml>false</xml>
+                <fieldNames>true</fieldNames>
+                <responseHeaders>false</responseHeaders>
+                <requestHeaders>false</requestHeaders>
+                <responseDataOnError>false</responseDataOnError>
+                <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
+                <assertionsResultsToSave>0</assertionsResultsToSave>
+                <bytes>true</bytes>
+                <sentBytes>true</sentBytes>
+                <url>true</url>
+                <threadCounts>true</threadCounts>
+                <idleTime>true</idleTime>
+                <connectTime>true</connectTime>
+              </value>
+            </objProp>
+            <stringProp name="filename"></stringProp>
+          </ResultCollector>
+          <hashTree/>
+        </hashTree>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="HTTP Delete Multi Email Request" enabled="true">
+          <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">{&#xd;
+  &quot;data&quot;: [&#xd;
+    {&#xd;
+      &quot;id&quot;: ${idEmailExtractor1},&#xd;
+      &quot;type&quot;: &quot;emails&quot;&#xd;
+    },&#xd;
+    {&#xd;
+      &quot;id&quot;: ${idEmailExtractor2},&#xd;
+      &quot;type&quot;: &quot;emails&quot;&#xd;
+    },&#xd;
+    {&#xd;
+      &quot;id&quot;: ${idEmailExtractor3},&#xd;
+      &quot;type&quot;: &quot;emails&quot;&#xd;
+    }&#xd;
+  ]&#xd;
+}</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain">${environment}</stringProp>
+          <stringProp name="HTTPSampler.port"></stringProp>
+          <stringProp name="HTTPSampler.protocol">https</stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path">v2/contacts/emails/</stringProp>
+          <stringProp name="HTTPSampler.method">DELETE</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Response Assertion" enabled="true">
+            <collectionProp name="Asserion.test_strings">
+              <stringProp name="49586">200</stringProp>
+            </collectionProp>
+            <stringProp name="Assertion.custom_message"></stringProp>
+            <stringProp name="Assertion.test_field">Assertion.response_code</stringProp>
+            <boolProp name="Assertion.assume_success">false</boolProp>
+            <intProp name="Assertion.test_type">16</intProp>
+          </ResponseAssertion>
+          <hashTree/>
+        </hashTree>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="HTTP Delete Contact Request" enabled="true">
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
+            <collectionProp name="Arguments.arguments"/>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain">${environment}</stringProp>
+          <stringProp name="HTTPSampler.port"></stringProp>
+          <stringProp name="HTTPSampler.protocol">https</stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path">v2/contacts/${idContactExtractor}</stringProp>
+          <stringProp name="HTTPSampler.method">DELETE</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Response Assertion" enabled="true">
+            <collectionProp name="Asserion.test_strings">
+              <stringProp name="49590">204</stringProp>
+            </collectionProp>
+            <stringProp name="Assertion.custom_message"></stringProp>
+            <stringProp name="Assertion.test_field">Assertion.response_code</stringProp>
+            <boolProp name="Assertion.assume_success">false</boolProp>
+            <intProp name="Assertion.test_type">16</intProp>
+          </ResponseAssertion>
+          <hashTree/>
+        </hashTree>
+        <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree" enabled="true">
+          <boolProp name="ResultCollector.error_logging">false</boolProp>
+          <objProp>
+            <name>saveConfig</name>
+            <value class="SampleSaveConfiguration">
+              <time>true</time>
+              <latency>true</latency>
+              <timestamp>true</timestamp>
+              <success>true</success>
+              <label>true</label>
+              <code>true</code>
+              <message>true</message>
+              <threadName>true</threadName>
+              <dataType>true</dataType>
+              <encoding>false</encoding>
+              <assertions>true</assertions>
+              <subresults>true</subresults>
+              <responseData>false</responseData>
+              <samplerData>false</samplerData>
+              <xml>false</xml>
+              <fieldNames>true</fieldNames>
+              <responseHeaders>false</responseHeaders>
+              <requestHeaders>false</requestHeaders>
+              <responseDataOnError>false</responseDataOnError>
+              <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
+              <assertionsResultsToSave>0</assertionsResultsToSave>
+              <bytes>true</bytes>
+              <sentBytes>true</sentBytes>
+              <url>true</url>
+              <threadCounts>true</threadCounts>
+              <idleTime>true</idleTime>
+              <connectTime>true</connectTime>
+            </value>
+          </objProp>
+          <stringProp name="filename"></stringProp>
+        </ResultCollector>
+        <hashTree/>
+        <ResultCollector guiclass="SummaryReport" testclass="ResultCollector" testname="Summary Report" enabled="true">
+          <boolProp name="ResultCollector.error_logging">false</boolProp>
+          <objProp>
+            <name>saveConfig</name>
+            <value class="SampleSaveConfiguration">
+              <time>true</time>
+              <latency>true</latency>
+              <timestamp>true</timestamp>
+              <success>true</success>
+              <label>true</label>
+              <code>true</code>
+              <message>true</message>
+              <threadName>true</threadName>
+              <dataType>true</dataType>
+              <encoding>false</encoding>
+              <assertions>true</assertions>
+              <subresults>true</subresults>
+              <responseData>false</responseData>
+              <samplerData>false</samplerData>
+              <xml>false</xml>
+              <fieldNames>true</fieldNames>
+              <responseHeaders>false</responseHeaders>
+              <requestHeaders>false</requestHeaders>
+              <responseDataOnError>false</responseDataOnError>
+              <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
+              <assertionsResultsToSave>0</assertionsResultsToSave>
+              <bytes>true</bytes>
+              <sentBytes>true</sentBytes>
+              <url>true</url>
+              <threadCounts>true</threadCounts>
+              <idleTime>true</idleTime>
+              <connectTime>true</connectTime>
+            </value>
+          </objProp>
+          <stringProp name="filename"></stringProp>
+        </ResultCollector>
+        <hashTree/>
+      </hashTree>
+    </hashTree>
+  </hashTree>
+</jmeterTestPlan>
